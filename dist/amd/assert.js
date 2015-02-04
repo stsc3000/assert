@@ -114,6 +114,7 @@ define([], function() {
       }
       throw new Error(msg);
     }
+    return actual;
   }
   function returnType(actual, T) {
     var errors = [];
