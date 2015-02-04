@@ -127,6 +127,11 @@ function isType(value, T, errors) {
     // return ['not instance of ' + prettyPrint(T), res];
   }
 
+  if (T instanceof $traceurRuntime.GenericType &&  T.type === Array) {
+    var types = T.argumentTypes.map((argumentType) => { return assert[argumentType.name] });
+    return assert(value).is(assert.arrayOf(...types));
+  }
+
   return value instanceof T;
 
   // if (!(value instanceof T)) {
