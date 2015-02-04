@@ -128,7 +128,7 @@ function isType(value, T, errors) {
   }
 
   if (T instanceof $traceurRuntime.GenericType &&  T.type === Array) {
-    var types = T.argumentTypes.map((argumentType) => { return assert[argumentType.name] });
+    var types = T.argumentTypes.map((argumentType) => { return assert[argumentType.name] || argumentType });
     return assert(value).is(assert.arrayOf(...types));
   }
 
@@ -167,6 +167,8 @@ function type(actual, T) {
 
     throw new Error(msg);
   }
+
+  return actual;
 }
 
 function returnType(actual, T) {
